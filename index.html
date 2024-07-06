@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="flag-icons-main\css\flag-icons.min.css">
     <link rel="stylesheet" href="flag-icons-main\css\flag-icons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/libphonenumber-js/1.9.34/libphonenumber-js.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>Phone Number Validator</title>
   </head>
@@ -15,7 +16,7 @@
         <div class="main">
           <div class="content">
             <h2>Enter Phone Number</h2>
-            <form action="#" method="post">
+            <form id="phone-form" action="#" method="post">
               <div class="select-box">
                 <select id="dropdown" name="country" required>
                   <option value="" class="option">Select Country</option>
@@ -223,9 +224,10 @@
                 </select>
               </div>
               <input type="tel" name="phone" placeholder="Phone Number" required>
-              <button class="btn" type="submit">Submit</button>
+              <button class="btn" type="submit">Check</button>
             </form>
             <p class="account">Don't Have An Active Phone Number?<a href="#">Email</a></p>
+            <div id="results-div"></div>
           </div>
           <div class="form-img">
             <img src="bg.png" alt="">
