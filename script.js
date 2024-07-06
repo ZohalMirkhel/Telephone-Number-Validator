@@ -10,9 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    // Prevent form submission and handle validation
     phoneForm.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent default form submission
+        event.preventDefault(); 
 
         const phoneNumber = phoneNumberInput.value.trim();
         const countryCode = countryDropdown.value;
@@ -47,26 +46,23 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Function to validate US phone number based on specified regex
+
     function validateUSPhoneNumber(phoneNumber) {
-        // Define your regex pattern for US phone numbers
         const usPhoneRegex = /^(1\s?)?(\([0-9]{3}\)|[0-9]{3})[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$/;
         return usPhoneRegex.test(phoneNumber);
     }
 
-    // Function to format US phone number
     function formatUSPhoneNumber(phoneNumber) {
         const match = phoneNumber.match(/^(1\s?)?(\([0-9]{3}\)|[0-9]{3})[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$/);
         if (match) {
-            return phoneNumber; // Return the phone number as is for demonstration
+            return phoneNumber;
         }
-        return phoneNumber; // Return original number if format doesn't match
+        return phoneNumber;
     }
 
-    // Event listener for clear button
     clearButton.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent default button behavior (form submission, if any)
-        phoneNumberInput.value = ''; // Clear the phone number input
-        countryDropdown.value = ''; // Reset the country dropdown to default (if needed)
+        event.preventDefault();
+        phoneNumberInput.value = '';
+        countryDropdown.value = '';
     });
 });
