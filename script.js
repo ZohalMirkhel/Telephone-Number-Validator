@@ -1,43 +1,72 @@
-document.addEventListener("DOMContentLoaded", function() {
-    var phoneForm = document.getElementById("phone-form");
-    var countrySelect = document.getElementById("dropdown");
-    var phoneInput = document.getElementById("user-input");
-    var resultDiv = document.getElementById("results-div");
+document.addEventListener('DOMContentLoaded', function () {
+    const phoneForm = document.getElementById('phone-form');
+    const countryDropdown = document.getElementById('dropdown');
+    const phoneNumberInput = document.getElementById('user-input');
+    const checkButton = document.getElementById('check-btn');
+    const clearButton = document.getElementById('clear-btn');
 
-    phoneForm.addEventListener("submit", function(event) {
-      event.preventDefault(); // Prevent the form from submitting
-
-      var countryCode = countrySelect.value;
-      var phoneNumber = phoneInput.value.trim();
-
-      if (!countryCode || !phoneNumber) {
-        resultDiv.textContent = "Please select a country and enter a phone number.";
-        resultDiv.style.color = "red";
+    if (!phoneForm || !countryDropdown || !phoneNumberInput || !checkButton || !clearButton) {
+        console.error('Required elements not found.');
         return;
-      }
+    }
 
-      try {
-        // Parse phone number using libphonenumber-js
-        var phoneUtil = libphonenumber.parsePhoneNumber(phoneNumber, countryCode);
-        var isValid = phoneUtil.isValid();
-        var formattedNumber = phoneUtil.formatInternational();
+    // Prevent form submission and handle validation
+    phoneForm.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const phoneNumber = phoneNumberInput.value.trim();
+        const countryCode = countryDropdown.value;
+        let isValid = false;
+        let formattedNumber = phoneNumber;
+
+        if (countryCode === '') {
+            alert('Please select a country.');
+            return;
+        }
+
+        try {
+            if (countryCode.toUpperCase() === 'US') {
+                isValid = validateUSPhoneNumber(phoneNumber);
+                if (isValid) {
+                    formattedNumber = formatUSPhoneNumber(phoneNumber);
+                }
+            } else {
+                const parsedNumber = libphonenumber.parsePhoneNumberFromString(phoneNumber, countryCode.toUpperCase());
+                isValid = parsedNumber.isValid();
+                formattedNumber = parsedNumber.formatInternational();
+            }
+        } catch (error) {
+            console.error('Error validating phone number:', error);
+            isValid = false;
+        }
 
         if (isValid) {
-          resultDiv.textContent = `Valid phone number: ${formattedNumber}`;
-          resultDiv.style.color = "green";
+            alert(`Valid ${countryCode} number: ${formattedNumber}`);
         } else {
-          resultDiv.textContent = "Invalid phone number.";
-          resultDiv.style.color = "red";
+            alert(`Invalid ${countryCode} number: ${phoneNumber}`);
         }
-      } catch (error) {
-        resultDiv.textContent = "Error validating phone number.";
-        resultDiv.style.color = "red";
-      }
     });
 
-    document.getElementById("clear-btn").addEventListener("click", function() {
-      phoneInput.value = "";
-      countrySelect.selectedIndex = 0;
-      resultDiv.textContent = "";
+    // Function to validate US phone number based on specified regex
+    function validateUSPhoneNumber(phoneNumber) {
+        // Define your regex pattern for US phone numbers
+        const usPhoneRegex = /^(1\s?)?(\([0-9]{3}\)|[0-9]{3})[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$/;
+        return usPhoneRegex.test(phoneNumber);
+    }
+
+    // Function to format US phone number
+    function formatUSPhoneNumber(phoneNumber) {
+        const match = phoneNumber.match(/^(1\s?)?(\([0-9]{3}\)|[0-9]{3})[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$/);
+        if (match) {
+            return phoneNumber; // Return the phone number as is for demonstration
+        }
+        return phoneNumber; // Return original number if format doesn't match
+    }
+
+    // Event listener for clear button
+    clearButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent default button behavior (form submission, if any)
+        phoneNumberInput.value = ''; // Clear the phone number input
+        countryDropdown.value = ''; // Reset the country dropdown to default (if needed)
     });
-  });
+});
