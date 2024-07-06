@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const checkValidNumber = (input) => {
-        resultsDiv.textContent = ''; // Clear previous results
+        resultsDiv.textContent = '';
 
         const phoneNumber = input.trim();
         const countryCode = selected.getAttribute('data-value');
@@ -88,9 +88,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     formattedNumber = formatUSPhoneNumber(phoneNumber);
                 }
             } else {
-                const parsedNumber = libphonenumber.parsePhoneNumber(phoneNumber, countryCode.toUpperCase());
-                isValid = parsedNumber.isValid();
-                formattedNumber = parsedNumber.formatInternational();
+                const phoneNumberUtil = libphonenumber.PhoneNumberUtil.getInstance();
+                const parsedNumber = phoneNumberUtil.parse(phoneNumber, countryCode.toUpperCase());
+                isValid = phoneNumberUtil.isValidNumber(parsedNumber);
+                formattedNumber = phoneNumberUtil.format(parsedNumber, libphonenumber.PhoneNumberFormat.INTERNATIONAL);
             }
         } catch (error) {
             console.error('Error validating phone number:', error);
@@ -112,9 +113,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function formatUSPhoneNumber(phoneNumber) {
-        const match = phoneNumber.match(/^(1\s?)?(\([0-9]{3}\)|[0-9]{3})[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$/);
+        const usPhoneRegex = /^(1\s?)?(\([0-9]{3}\)|[0-9]{3})[\s\-]?([0-9]{3})[\s\-]?([0-9]{4})$/;
+        const match = phoneNumber.match(usPhoneRegex);
         if (match) {
-            return phoneNumber;
+            const countryCode = match[1] ? match[1].trim() + ' ' : '';
+            const areaCode = match[2];
+            const firstPart = match[3];
+            const secondPart = match[4];
+            return `${countryCode}${areaCode} ${firstPart}-${secondPart}`;
         }
         return phoneNumber;
     }
