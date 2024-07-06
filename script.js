@@ -9,9 +9,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const clearButton = document.getElementById('clear-btn');
     const resultsDiv = document.getElementById('results-div');
 
-    const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
-    const PNF = libphonenumber.PhoneNumberFormat;
-
     optionsContainer.style.display = 'none';
 
     selected.addEventListener('click', () => {
@@ -43,36 +40,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     phoneForm.addEventListener('submit', function (event) {
         event.preventDefault();
+        checkValidNumber(phoneNumberInput.value);
+    });
 
-        const phoneNumber = phoneNumberInput.value.trim();
-        const countryCode = selected.getAttribute('data-value');
+    checkButton.addEventListener('click', function () {
+        checkValidNumber(phoneNumberInput.value);
+    });
 
-        if (!phoneNumber) {
-            alert('Please provide a phone number');
-            return;
-        }
-
-        let isValid = false;
-        let formattedNumber = phoneNumber;
-
-        if (!countryCode) {
-            resultsDiv.textContent = 'Please select a country.';
-            return;
-        }
-
-        try {
-            const parsedNumber = phoneUtil.parse(phoneNumber, countryCode.toUpperCase());
-            isValid = phoneUtil.isValidNumber(parsedNumber);
-            formattedNumber = phoneUtil.format(parsedNumber, PNF.INTERNATIONAL);
-        } catch (error) {
-            console.error('Error validating phone number:', error);
-            isValid = false;
-        }
-
-        if (isValid) {
-            resultsDiv.textContent = `Valid ${countryCode} number: ${formattedNumber}`;
-        } else {
-            resultsDiv.textContent = `Invalid ${countryCode} number: ${phoneNumber}`;
+    phoneNumberInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+            checkValidNumber(phoneNumberInput.value);
         }
     });
 
@@ -82,4 +59,63 @@ document.addEventListener('DOMContentLoaded', function () {
         selected.innerHTML = 'Select Country';
         resultsDiv.textContent = '';
     });
+
+    const checkValidNumber = (input) => {
+        resultsDiv.textContent = ''; // Clear previous results
+
+        const phoneNumber = input.trim();
+        const countryCode = selected.getAttribute('data-value');
+
+        if (!phoneNumber) {
+            alert('Please provide a phone number');
+            return;
+        }
+
+        if (!countryCode) {
+            resultsDiv.textContent = 'Please select a country.';
+            return;
+        }
+
+        let isValid = false;
+        let formattedNumber = phoneNumber;
+        const pTag = document.createElement('p');
+        pTag.className = 'results-text';
+
+        try {
+            if (countryCode.toUpperCase() === 'US') {
+                isValid = validateUSPhoneNumber(phoneNumber);
+                if (isValid) {
+                    formattedNumber = formatUSPhoneNumber(phoneNumber);
+                }
+            } else {
+                const parsedNumber = libphonenumber.parsePhoneNumber(phoneNumber, countryCode.toUpperCase());
+                isValid = parsedNumber.isValid();
+                formattedNumber = parsedNumber.formatInternational();
+            }
+        } catch (error) {
+            console.error('Error validating phone number:', error);
+            isValid = false;
+        }
+
+        pTag.style.color = isValid ? '#00471b' : '#4d3800';
+        pTag.appendChild(
+            document.createTextNode(
+                `${isValid ? 'Valid' : 'Invalid'} ${countryCode} number: ${formattedNumber}`
+            )
+        );
+        resultsDiv.appendChild(pTag);
+    };
+
+    function validateUSPhoneNumber(phoneNumber) {
+        const usPhoneRegex = /^(1\s?)?(\([0-9]{3}\)|[0-9]{3})[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$/;
+        return usPhoneRegex.test(phoneNumber);
+    }
+
+    function formatUSPhoneNumber(phoneNumber) {
+        const match = phoneNumber.match(/^(1\s?)?(\([0-9]{3}\)|[0-9]{3})[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$/);
+        if (match) {
+            return phoneNumber;
+        }
+        return phoneNumber;
+    }
 });
