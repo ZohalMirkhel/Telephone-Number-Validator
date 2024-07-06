@@ -135,26 +135,25 @@ a{
 }
 
 .select {
-  position: relative;
-  background-color: white;
-  border: 1px solid #ccc;
-  cursor: pointer;
+  outline: none;
+  margin-bottom: 10px;
+  font-stretch: 16px;
+  color: #999;
+  text-align: left;
+  padding: 14px 20px;
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 50px;
+  background: #f7fafc;
+  transition: 0.3s ease;
 }
 
-.selected {
-  padding: 10px;
-  display: flex;
-  align-items: center;
-}
-
-.selected::after {
-  content: '';
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  border: 6px solid transparent;
-  border-top-color: #000;
+.select:focus {
+  background: transparent;
+  border: 1px solid rgb(226,174,228);
+  box-shadow: 0 0 20px #fbc2eb;
 }
 
 .options-container {
@@ -163,6 +162,7 @@ a{
   left: 0;
   width: 100%;
   background-color: white;
+  border-radius: 2%;
   border: 1px solid #ccc;
   z-index: 10;
   max-height: 200px;
@@ -191,30 +191,6 @@ a{
 
 #results-div {
   margin-top: 10px;
-}
-
-.login-form select{
-  outline: none;
-  margin-bottom: 15px;
-  font-stretch: 16px;
-  color: #999;
-  text-align: center;
-  padding: 14px 20px;
-  width: 100%;
-  display: inline-block;
-  box-sizing: border-box;
-  border: none;
-  appearance: none;
-  outline: none;
-  background: #f7fafc;
-  transition: 0.3s ease;
-  cursor: pointer;
-}
-
-.login-form select:focus{
-  background: transparent;
-  border: 1px solid rgb(226,174,228);
-  box-shadow: 0 0 20px #fbc2eb;
 }
 
 .select-box:after {
