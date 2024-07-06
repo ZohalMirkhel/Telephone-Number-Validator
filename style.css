@@ -87,14 +87,6 @@
   max-width: 100%;
 }
 
-p{
-  color: #666;
-  font-size: 16px;
-  line-height: 25px;
-  opacity: 0.6;
-  text-align: center;
-}
-
 .btn,
 button,
 input,
@@ -205,14 +197,6 @@ a{
   font-weight: 600;
   transition: 0.3s ease;
   cursor: pointer;
-}
-
-p.account a{ 
-  color: rgb(160,181,211);
-}
-
-p.account a:hover{
- text-decoration: underline;
 }
 
 option {
