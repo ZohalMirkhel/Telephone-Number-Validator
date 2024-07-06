@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const clearButton = document.getElementById('clear-btn');
     const resultsDiv = document.getElementById('results-div');
 
+    const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
+    const PNF = libphonenumber.PhoneNumberFormat;
+
     optionsContainer.style.display = 'none';
 
     selected.addEventListener('click', () => {
@@ -44,6 +47,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const phoneNumber = phoneNumberInput.value.trim();
         const countryCode = selected.getAttribute('data-value');
 
+        if (!phoneNumber) {
+            alert('Please provide a phone number');
+            return;
+        }
+
         let isValid = false;
         let formattedNumber = phoneNumber;
 
@@ -53,16 +61,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         try {
-            if (countryCode.toUpperCase() === 'US') {
-                isValid = validateUSPhoneNumber(phoneNumber);
-                if (isValid) {
-                    formattedNumber = formatUSPhoneNumber(phoneNumber);
-                }
-            } else {
-                const parsedNumber = libphonenumber.parsePhoneNumberFromString(phoneNumber, countryCode.toUpperCase());
-                isValid = parsedNumber.isValid();
-                formattedNumber = parsedNumber.formatInternational();
-            }
+            const parsedNumber = phoneUtil.parse(phoneNumber, countryCode.toUpperCase());
+            isValid = phoneUtil.isValidNumber(parsedNumber);
+            formattedNumber = phoneUtil.format(parsedNumber, PNF.INTERNATIONAL);
         } catch (error) {
             console.error('Error validating phone number:', error);
             isValid = false;
@@ -74,19 +75,6 @@ document.addEventListener('DOMContentLoaded', function () {
             resultsDiv.textContent = `Invalid ${countryCode} number: ${phoneNumber}`;
         }
     });
-
-    function validateUSPhoneNumber(phoneNumber) {
-        const usPhoneRegex = /^(1\s?)?(\([0-9]{3}\)|[0-9]{3})[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$/;
-        return usPhoneRegex.test(phoneNumber);
-    }
-
-    function formatUSPhoneNumber(phoneNumber) {
-        const match = phoneNumber.match(/^(1\s?)?(\([0-9]{3}\)|[0-9]{3})[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$/);
-        if (match) {
-            return phoneNumber;
-        }
-        return phoneNumber;
-    }
 
     clearButton.addEventListener('click', function (event) {
         event.preventDefault();
