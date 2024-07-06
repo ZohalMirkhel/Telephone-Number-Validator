@@ -4,22 +4,24 @@ document.addEventListener('DOMContentLoaded', function () {
     const phoneNumberInput = document.getElementById('user-input');
     const checkButton = document.getElementById('check-btn');
     const clearButton = document.getElementById('clear-btn');
+    const resultsDiv = document.getElementById('results-div');
 
-    if (!phoneForm || !countryDropdown || !phoneNumberInput || !checkButton || !clearButton) {
+    if (!phoneForm || !countryDropdown || !phoneNumberInput || !checkButton || !clearButton || !resultsDiv) {
         console.error('Required elements not found.');
         return;
     }
 
     phoneForm.addEventListener('submit', function (event) {
-        event.preventDefault(); 
+        event.preventDefault();
 
         const phoneNumber = phoneNumberInput.value.trim();
         const countryCode = countryDropdown.value;
         let isValid = false;
         let formattedNumber = phoneNumber;
 
+
         if (countryCode === '') {
-            alert('Please select a country.');
+            resultsDiv.textContent = 'Please select a country.';
             return;
         }
 
@@ -30,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     formattedNumber = formatUSPhoneNumber(phoneNumber);
                 }
             } else {
+
                 const parsedNumber = libphonenumber.parsePhoneNumberFromString(phoneNumber, countryCode.toUpperCase());
                 isValid = parsedNumber.isValid();
                 formattedNumber = parsedNumber.formatInternational();
@@ -39,10 +42,11 @@ document.addEventListener('DOMContentLoaded', function () {
             isValid = false;
         }
 
+
         if (isValid) {
-            alert(`Valid ${countryCode} number: ${formattedNumber}`);
+            resultsDiv.textContent = `Valid ${countryCode} number: ${formattedNumber}`;
         } else {
-            alert(`Invalid ${countryCode} number: ${phoneNumber}`);
+            resultsDiv.textContent = `Invalid ${countryCode} number: ${phoneNumber}`;
         }
     });
 
@@ -52,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return usPhoneRegex.test(phoneNumber);
     }
 
+
     function formatUSPhoneNumber(phoneNumber) {
         const match = phoneNumber.match(/^(1\s?)?(\([0-9]{3}\)|[0-9]{3})[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$/);
         if (match) {
@@ -60,9 +65,11 @@ document.addEventListener('DOMContentLoaded', function () {
         return phoneNumber;
     }
 
+
     clearButton.addEventListener('click', function (event) {
         event.preventDefault();
         phoneNumberInput.value = '';
         countryDropdown.value = '';
+        resultsDiv.textContent = '';
     });
 });
