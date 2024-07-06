@@ -95,14 +95,17 @@ p{
   text-align: center;
 }
 
-.btn,button,input{
+.btn,
+button,
+input,
+select {
   border-radius: 35px;
 }
 
-.btn:hover,
-button:hover{
+.btn:hover{
   color: #272346;
   transition: 0.5s ease;
+  cursor: pointer;
 }
 
 a{
@@ -131,6 +134,49 @@ a{
 .login-form input:focus{
   background: transparent;
   border: 1px solid rgb(226,174,228);
+  box-shadow: 0 0 20px #fbc2eb;
+}
+
+.select-box {
+  position: relative;
+}
+
+.login-form select{
+  outline: none;
+  margin-bottom: 15px;
+  font-stretch: 16px;
+  color: #999;
+  text-align: center;
+  padding: 14px 20px;
+  width: 100%;
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  appearance: none;
+  outline: none;
+  background: #f7fafc;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.login-form select:focus{
+  background: transparent;
+  border: 1px solid rgb(226,174,228);
+  box-shadow: 0 0 20px #fbc2eb;
+}
+
+.select-box:after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  width: 8px;
+  height: 8px;
+  border-right: 1px solid rgb(124, 121, 121);
+  border-bottom: 1px solid rgb(124, 121, 121);
+  transform: rotate(45deg);
+  right: 30px;
+  top: 28%;
+  pointer-events: none;
 }
 
 .login-form button{
@@ -150,6 +196,10 @@ p.account a{
 
 p.account a:hover{
  text-decoration: underline;
+}
+
+option {
+  margin: 30px;
 }
 
 @media(max-width:736px){

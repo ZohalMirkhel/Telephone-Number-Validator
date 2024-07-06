@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <link rel="stylesheet" href="flag-icons-main\css\flag-icons.min.css">
+    <link rel="stylesheet" href="flag-icons-main\css\flag-icons.css">
     <link rel="stylesheet" href="style.css">
     <title>Phone Number Validator</title>
   </head>
@@ -15,13 +16,216 @@
           <div class="content">
             <h2>Enter Phone Number</h2>
             <form action="#" method="post">
-              <select id="country-select" name="country" required>
-                  <option value="">Select Country</option>
-              </select>
+              <div class="select-box">
+                <select id="dropdown" name="country" required>
+                  <option value="" class="option">Select Country</option>
+                  <option value="AF" data-flag="af">Afghanistan</option>
+                  <option value="AL" data-flag="al">Albania</option>
+                  <option value="DZ" data-flag="dz">Algeria</option>
+                  <option value="AS" data-flag="as">American Samoa</option>
+                  <option value="AD" data-flag="ad">Andorra</option>
+                  <option value="AO" data-flag="ao">Angola</option>
+                  <option value="AI" data-flag="ai">Anguilla</option>
+                  <option value="AG" data-flag="ag">Antigua and Barbuda</option>
+                  <option value="AR" data-flag="ar">Argentina</option>
+                  <option value="AM" data-flag="am">Armenia</option>
+                  <option value="AW" data-flag="aw">Aruba</option>
+                  <option value="AU" data-flag="au">Australia</option>
+                  <option value="AT" data-flag="at">Austria</option>
+                  <option value="AZ" data-flag="az">Azerbaijan</option>
+                  <option value="BS" data-flag="bs">Bahamas</option>
+                  <option value="BH" data-flag="bh">Bahrain</option>
+                  <option value="BD" data-flag="bd">Bangladesh</option>
+                  <option value="BB" data-flag="bb">Barbados</option>
+                  <option value="BY" data-flag="by">Belarus</option>
+                  <option value="BE" data-flag="be">Belgium</option>
+                  <option value="BZ" data-flag="bz">Belize</option>
+                  <option value="BJ" data-flag="bj">Benin</option>
+                  <option value="BM" data-flag="bm">Bermuda</option>
+                  <option value="BT" data-flag="bt">Bhutan</option>
+                  <option value="BO" data-flag="bo">Bolivia</option>
+                  <option value="BA" data-flag="ba">Bosnia and Herzegovina</option>
+                  <option value="BW" data-flag="bw">Botswana</option>
+                  <option value="BR" data-flag="br">Brazil</option>
+                  <option value="BN" data-flag="bn">Brunei Darussalam</option>
+                  <option value="BG" data-flag="bg">Bulgaria</option>
+                  <option value="BF" data-flag="bf">Burkina Faso</option>
+                  <option value="BI" data-flag="bi">Burundi</option>
+                  <option value="CV" data-flag="cv">Cabo Verde</option>
+                  <option value="KH" data-flag="kh">Cambodia</option>
+                  <option value="CM" data-flag="cm">Cameroon</option>
+                  <option value="CA" data-flag="ca">Canada</option>
+                  <option value="KY" data-flag="ky">Cayman Islands</option>
+                  <option value="CF" data-flag="cf">Central African Republic</option>
+                  <option value="TD" data-flag="td">Chad</option>
+                  <option value="CL" data-flag="cl">Chile</option>
+                  <option value="CN" data-flag="cn">China</option>
+                  <option value="CO" data-flag="co">Colombia</option>
+                  <option value="KM" data-flag="km">Comoros</option>
+                  <option value="CG" data-flag="cg">Congo</option>
+                  <option value="CD" data-flag="cd">Congo (DRC)</option>
+                  <option value="CR" data-flag="cr">Costa Rica</option>
+                  <option value="HR" data-flag="hr">Croatia</option>
+                  <option value="CU" data-flag="cu">Cuba</option>
+                  <option value="CY" data-flag="cy">Cyprus</option>
+                  <option value="CZ" data-flag="cz">Czech Republic</option>
+                  <option value="DK" data-flag="dk">Denmark</option>
+                  <option value="DJ" data-flag="dj">Djibouti</option>
+                  <option value="DM" data-flag="dm">Dominica</option>
+                  <option value="DO" data-flag="do">Dominican Republic</option>
+                  <option value="EC" data-flag="ec">Ecuador</option>
+                  <option value="EG" data-flag="eg">Egypt</option>
+                  <option value="SV" data-flag="sv">El Salvador</option>
+                  <option value="GQ" data-flag="gq">Equatorial Guinea</option>
+                  <option value="ER" data-flag="er">Eritrea</option>
+                  <option value="EE" data-flag="ee">Estonia</option>
+                  <option value="SZ" data-flag="sz">Eswatini</option>
+                  <option value="ET" data-flag="et">Ethiopia</option>
+                  <option value="FJ" data-flag="fj">Fiji</option>
+                  <option value="FI" data-flag="fi">Finland</option>
+                  <option value="FR" data-flag="fr">France</option>
+                  <option value="GA" data-flag="ga">Gabon</option>
+                  <option value="GM" data-flag="gm">Gambia</option>
+                  <option value="GE" data-flag="ge">Georgia</option>
+                  <option value="DE" data-flag="de">Germany</option>
+                  <option value="GH" data-flag="gh">Ghana</option>
+                  <option value="GR" data-flag="gr">Greece</option>
+                  <option value="GD" data-flag="gd">Grenada</option>
+                  <option value="GU" data-flag="gu">Guam</option>
+                  <option value="GT" data-flag="gt">Guatemala</option>
+                  <option value="GN" data-flag="gn">Guinea</option>
+                  <option value="GW" data-flag="gw">Guinea-Bissau</option>
+                  <option value="GY" data-flag="gy">Guyana</option>
+                  <option value="HT" data-flag="ht">Haiti</option>
+                  <option value="HN" data-flag="hn">Honduras</option>
+                  <option value="HU" data-flag="hu">Hungary</option>
+                  <option value="IS" data-flag="is">Iceland</option>
+                  <option value="IN" data-flag="in">India</option>
+                  <option value="ID" data-flag="id">Indonesia</option>
+                  <option value="IR" data-flag="ir">Iran</option>
+                  <option value="IQ" data-flag="iq">Iraq</option>
+                  <option value="IE" data-flag="ie">Ireland</option>
+                  <option value="IL" data-flag="il">Israel</option>
+                  <option value="IT" data-flag="it">Italy</option>
+                  <option value="JM" data-flag="jm">Jamaica</option>
+                  <option value="JP" data-flag="jp">Japan</option>
+                  <option value="JO" data-flag="jo">Jordan</option>
+                  <option value="KZ" data-flag="kz">Kazakhstan</option>
+                  <option value="KE" data-flag="ke">Kenya</option>
+                  <option value="KI" data-flag="ki">Kiribati</option>
+                  <option value="KP" data-flag="kp">Korea (North)</option>
+                  <option value="KR" data-flag="kr">Korea (South)</option>
+                  <option value="KW" data-flag="kw">Kuwait</option>
+                  <option value="KG" data-flag="kg">Kyrgyzstan</option>
+                  <option value="LA" data-flag="la">Laos</option>
+                  <option value="LV" data-flag="lv">Latvia</option>
+                  <option value="LB" data-flag="lb">Lebanon</option>
+                  <option value="LS" data-flag="ls">Lesotho</option>
+                  <option value="LR" data-flag="lr">Liberia</option>
+                  <option value="LY" data-flag="ly">Libya</option>
+                  <option value="LI" data-flag="li">Liechtenstein</option>
+                  <option value="LT" data-flag="lt">Lithuania</option>
+                  <option value="LU" data-flag="lu">Luxembourg</option>
+                  <option value="MG" data-flag="mg">Madagascar</option>
+                  <option value="MW" data-flag="mw">Malawi</option>
+                  <option value="MY" data-flag="my">Malaysia</option>
+                  <option value="MV" data-flag="mv">Maldives</option>
+                  <option value="ML" data-flag="ml">Mali</option>
+                  <option value="MT" data-flag="mt">Malta</option>
+                  <option value="MH" data-flag="mh">Marshall Islands</option>
+                  <option value="MR" data-flag="mr">Mauritania</option>
+                  <option value="MU" data-flag="mu">Mauritius</option>
+                  <option value="MX" data-flag="mx">Mexico</option>
+                  <option value="FM" data-flag="fm">Micronesia</option>
+                  <option value="MD" data-flag="md">Moldova</option>
+                  <option value="MC" data-flag="mc">Monaco</option>
+                  <option value="MN" data-flag="mn">Mongolia</option>
+                  <option value="ME" data-flag="me">Montenegro</option>
+                  <option value="MA" data-flag="ma">Morocco</option>
+                  <option value="MZ" data-flag="mz">Mozambique</option>
+                  <option value="MM" data-flag="mm">Myanmar</option>
+                  <option value="NA" data-flag="na">Namibia</option>
+                  <option value="NR" data-flag="nr">Nauru</option>
+                  <option value="NP" data-flag="np">Nepal</option>
+                  <option value="NL" data-flag="nl">Netherlands</option>
+                  <option value="NZ" data-flag="nz">New Zealand</option>
+                  <option value="NI" data-flag="ni">Nicaragua</option>
+                  <option value="NE" data-flag="ne">Niger</option>
+                  <option value="NG" data-flag="ng">Nigeria</option>
+                  <option value="MK" data-flag="mk">North Macedonia</option>
+                  <option value="NO" data-flag="no">Norway</option>
+                  <option value="OM" data-flag="om">Oman</option>
+                  <option value="PK" data-flag="pk">Pakistan</option>
+                  <option value="PW" data-flag="pw">Palau</option>
+                  <option value="PS" data-flag="ps">Palestine</option>
+                  <option value="PA" data-flag="pa">Panama</option>
+                  <option value="PG" data-flag="pg">Papua New Guinea</option>
+                  <option value="PY" data-flag="py">Paraguay</option>
+                  <option value="PE" data-flag="pe">Peru</option>
+                  <option value="PH" data-flag="ph">Philippines</option>
+                  <option value="PL" data-flag="pl">Poland</option>
+                  <option value="PT" data-flag="pt">Portugal</option>
+                  <option value="QA" data-flag="qa">Qatar</option>
+                  <option value="RO" data-flag="ro">Romania</option>
+                  <option value="RU" data-flag="ru">Russia</option>
+                  <option value="RW" data-flag="rw">Rwanda</option>
+                  <option value="KN" data-flag="kn">Saint Kitts and Nevis</option>
+                  <option value="LC" data-flag="lc">Saint Lucia</option>
+                  <option value="VC" data-flag="vc">Saint Vincent and the Grenadines</option>
+                  <option value="WS" data-flag="ws">Samoa</option>
+                  <option value="SM" data-flag="sm">San Marino</option>
+                  <option value="ST" data-flag="st">Sao Tome and Principe</option>
+                  <option value="SA" data-flag="sa">Saudi Arabia</option>
+                  <option value="SN" data-flag="sn">Senegal</option>
+                  <option value="RS" data-flag="rs">Serbia</option>
+                  <option value="SC" data-flag="sc">Seychelles</option>
+                  <option value="SL" data-flag="sl">Sierra Leone</option>
+                  <option value="SG" data-flag="sg">Singapore</option>
+                  <option value="SK" data-flag="sk">Slovakia</option>
+                  <option value="SI" data-flag="si">Slovenia</option>
+                  <option value="SB" data-flag="sb">Solomon Islands</option>
+                  <option value="SO" data-flag="so">Somalia</option>
+                  <option value="ZA" data-flag="za">South Africa</option>
+                  <option value="SS" data-flag="ss">South Sudan</option>
+                  <option value="ES" data-flag="es">Spain</option>
+                  <option value="LK" data-flag="lk">Sri Lanka</option>
+                  <option value="SD" data-flag="sd">Sudan</option>
+                  <option value="SR" data-flag="sr">Suriname</option>
+                  <option value="SE" data-flag="se">Sweden</option>
+                  <option value="CH" data-flag="ch">Switzerland</option>
+                  <option value="SY" data-flag="sy">Syria</option>
+                  <option value="TW" data-flag="tw">Taiwan</option>
+                  <option value="TJ" data-flag="tj">Tajikistan</option>
+                  <option value="TZ" data-flag="tz">Tanzania</option>
+                  <option value="TH" data-flag="th">Thailand</option>
+                  <option value="TL" data-flag="tl">Timor-Leste</option>
+                  <option value="TG" data-flag="tg">Togo</option>
+                  <option value="TO" data-flag="to">Tonga</option>
+                  <option value="TT" data-flag="tt">Trinidad and Tobago</option>
+                  <option value="TN" data-flag="tn">Tunisia</option>
+                  <option value="TR" data-flag="tr">Turkey</option>
+                  <option value="TM" data-flag="tm">Turkmenistan</option>
+                  <option value="TV" data-flag="tv">Tuvalu</option>
+                  <option value="UG" data-flag="ug">Uganda</option>
+                  <option value="UA" data-flag="ua">Ukraine</option>
+                  <option value="AE" data-flag="ae">United Arab Emirates</option>
+                  <option value="GB" data-flag="gb">United Kingdom</option>
+                  <option value="US" data-flag="us">United States</option>
+                  <option value="UY" data-flag="uy">Uruguay</option>
+                  <option value="UZ" data-flag="uz">Uzbekistan</option>
+                  <option value="VU" data-flag="vu">Vanuatu</option>
+                  <option value="VA" data-flag="va">Vatican City</option>
+                  <option value="VE" data-flag="ve">Venezuela</option>
+                  <option value="VN" data-flag="vn">Vietnam</option>
+                  <option value="YE" data-flag="ye">Yemen</option>
+                  <option value="ZM" data-flag="zm">Zambia</option>
+                  <option value="ZW" data-flag="zw">Zimbabwe</option>
+                </select>
+              </div>
               <input type="tel" name="phone" placeholder="Phone Number" required>
               <button class="btn" type="submit">Submit</button>
             </form>
-            <p class="account">Don't Have An Active Phone Number? <a href="#">Email</a></p>
+            <p class="account">Don't Have An Active Phone Number?<a href="#">Email</a></p>
           </div>
           <div class="form-img">
             <img src="bg.png" alt="">
