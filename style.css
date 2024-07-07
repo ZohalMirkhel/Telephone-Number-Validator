@@ -180,7 +180,6 @@ a {
   margin-right: 10px;
 }
 
-
 #user-input {
   margin-bottom: 10px;
 }
@@ -189,7 +188,7 @@ a {
   margin-top: 10px;
 }
 
-.select-box:after {
+.select-box::after {
   content: '';
   position: absolute;
   z-index: 1;
@@ -220,7 +219,7 @@ option {
   margin: 30px;
 }
 
-@media(max-width:736px) {
+@media (max-width: 736px) {
   .login-form .main {
     flex-direction: column;
   }
