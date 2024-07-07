@@ -1,4 +1,4 @@
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -7,7 +7,7 @@
     sans-serif;
 }
 
-.login-form{
+.login-form {
   position: relative;
   min-height: 100vh;
   z-index: 0;
@@ -35,12 +35,12 @@
   }
 }
 
-.container{
+.container {
   max-width: 800px;
   margin: 0 auto;
 }
 
-.login-form h1{
+.login-form h1 {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 400;
@@ -48,7 +48,7 @@
   font-family: 'poppins',sans-serif;
 }
 
-.login-form h2{
+.login-form h2 {
   line-height: 40px;
   margin-bottom: 5px;
   font-size: 30px;
@@ -57,13 +57,13 @@
   text-align: center;
 }
 
-.login-form .main{
+.login-form .main {
   position: relative;
   display: flex;
   margin: 30px 0;
 }
 
-.content{
+.content {
   flex-basis: 50%;
   padding: 3em 3em;
   background: #fff;
@@ -72,7 +72,7 @@
   border-bottom-left-radius: 8px;
 }
 
-.form-img{
+.form-img {
   flex-basis: 50%;
   background: #dfe5ea;
   background-size: cover;
@@ -83,7 +83,7 @@
   display: grid;
 }
 
-.form-img img{
+.form-img img {
   max-width: 100%;
   height: 110%;
 }
@@ -95,21 +95,21 @@ select {
   border-radius: 35px;
 }
 
-.btn:hover{
+.btn:hover {
   color: #272346;
   transition: 0.5s ease;
   cursor: pointer;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-.login-form form{
+.login-form form {
   margin: 30px 0;
 }
 
-.login-form input{
+.login-form input {
   outline: none;
   margin-bottom: 15px;
   font-stretch: 16px;
@@ -124,7 +124,7 @@ a{
   transition: 0.3s ease;
 }
 
-.login-form input:focus{
+.login-form input:focus {
   background: transparent;
   border: 1px solid rgb(226,174,228);
   box-shadow: 0 0 20px #fbc2eb;
@@ -201,7 +201,7 @@ a{
   pointer-events: none;
 }
 
-.login-form button{
+.login-form button {
   font-size: 18px;
   color: #fff;
   width: 100%;
@@ -218,24 +218,24 @@ option {
   margin: 30px;
 }
 
-@media(max-width:736px){
-  .login-form .main{
+@media(max-width:736px) {
+  .login-form .main {
     flex-direction: column;
   }
 
-  .login-form form{
+  .login-form form {
     margin-top: 30px;
     margin-bottom: 10px;
   }
 
-  .form-img{
+  .form-img {
     border-radius: 0;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     order: 2;
   }
 
-  .content{
+  .content {
     order: 1;
     border-radius: 0;
     border-top-left-radius: 8px;
