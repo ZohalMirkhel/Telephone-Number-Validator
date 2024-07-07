@@ -45,7 +45,9 @@
   font-size: 2.5rem;
   font-weight: 400;
   color: #fff;
-  font-family: 'poppins',sans-serif;
+  font-family:
+    'poppins',
+    sans-serif;
 }
 
 .login-form h2 {
@@ -67,7 +69,7 @@
   flex-basis: 50%;
   padding: 3em 3em;
   background: #fff;
-  box-shadow: 2px 9px 49px -17px rgba(0,0,0,0.1);
+  box-shadow: 2px 9px 49px -17px rgba(0, 0, 0, 0.1);
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
@@ -126,7 +128,7 @@ a {
 
 .login-form input:focus {
   background: transparent;
-  border: 1px solid rgb(226,174,228);
+  border: 1px solid rgb(226, 174, 228);
   box-shadow: 0 0 20px #fbc2eb;
 }
 
@@ -206,7 +208,7 @@ a {
   color: #fff;
   width: 100%;
   margin-top: 15px;
-  background: rgb(226,174,228);
+  background: rgb(226, 174, 228);
   border: none;
   padding: 14px 15px;
   font-weight: 600;
