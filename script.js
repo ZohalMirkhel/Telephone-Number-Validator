@@ -12,7 +12,11 @@ document.addEventListener('DOMContentLoaded', function () {
     optionsContainer.style.display = 'none';
 
     selected.addEventListener('click', () => {
-        optionsContainer.style.display = optionsContainer.style.display === 'none' ? 'block' : 'none';
+        if (optionsContainer.style.display === 'none') {
+            optionsContainer.style.display = 'block';
+        } else {
+            optionsContainer.style.display = 'none';
+        }
     });
 
     options.forEach(option => {
@@ -56,8 +60,9 @@ document.addEventListener('DOMContentLoaded', function () {
         resultsDiv.textContent = '';
     });
 
-    const checkValidNumber = input => {
+    const checkValidNumber = (input) => {
         resultsDiv.textContent = '';
+
         const phoneNumber = input.trim();
         const countryCode = selected.getAttribute('data-value');
 
@@ -71,43 +76,14 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        if (countryCode.toUpperCase() === 'US') {
-            validateUSPhoneNumber(phoneNumber);
-        } else {
-            validateInternationalPhoneNumber(phoneNumber, countryCode.toUpperCase());
-        }
-    };
-
-    const validateUSPhoneNumber = input => {
-        const countryCode = '^(1\\s?)?';
-        const areaCode = '(\\([0-9]{3}\\)|[0-9]{3})';
-        const spacesDashes = '[\\s\\-]?';
-        const phoneNumber = '[0-9]{3}[\\s\\-]?[0-9]{4}$';
-        const phoneRegex = new RegExp(
-            `${countryCode}${areaCode}${spacesDashes}${phoneNumber}`
-        );
-
-        const pTag = document.createElement('p');
-        pTag.className = 'results-text';
-        const isValid = phoneRegex.test(input);
-        pTag.style.color = isValid ? '#00471b' : '#4d3800';
-        pTag.appendChild(
-            document.createTextNode(
-                `${isValid ? 'Valid' : 'Invalid'} US number: ${input}`
-            )
-        );
-        resultsDiv.appendChild(pTag);
-    };
-
-    const validateInternationalPhoneNumber = (phoneNumber, countryCode) => {
-        const pTag = document.createElement('p');
-        pTag.className = 'results-text';
         let isValid = false;
         let formattedNumber = phoneNumber;
+        const pTag = document.createElement('p');
+        pTag.className = 'results-text';
 
         try {
             const phoneNumberUtil = libphonenumber.PhoneNumberUtil.getInstance();
-            const parsedNumber = phoneNumberUtil.parse(phoneNumber, countryCode);
+            const parsedNumber = phoneNumberUtil.parse(phoneNumber, countryCode.toUpperCase());
             isValid = phoneNumberUtil.isValidNumber(parsedNumber);
             formattedNumber = phoneNumberUtil.format(parsedNumber, libphonenumber.PhoneNumberFormat.INTERNATIONAL);
         } catch (error) {
