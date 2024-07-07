@@ -82,17 +82,10 @@ document.addEventListener('DOMContentLoaded', function () {
         pTag.className = 'results-text';
 
         try {
-            if (countryCode.toUpperCase() === 'US') {
-                isValid = validateUSPhoneNumber(phoneNumber);
-                if (isValid) {
-                    formattedNumber = formatUSPhoneNumber(phoneNumber);
-                }
-            } else {
-                const phoneNumberUtil = libphonenumber.PhoneNumberUtil.getInstance();
-                const parsedNumber = phoneNumberUtil.parse(phoneNumber, countryCode.toUpperCase());
-                isValid = phoneNumberUtil.isValidNumber(parsedNumber);
-                formattedNumber = phoneNumberUtil.format(parsedNumber, libphonenumber.PhoneNumberFormat.INTERNATIONAL);
-            }
+            const phoneNumberUtil = libphonenumber.PhoneNumberUtil.getInstance();
+            const parsedNumber = phoneNumberUtil.parse(phoneNumber, countryCode.toUpperCase());
+            isValid = phoneNumberUtil.isValidNumber(parsedNumber);
+            formattedNumber = phoneNumberUtil.format(parsedNumber, libphonenumber.PhoneNumberFormat.INTERNATIONAL);
         } catch (error) {
             console.error('Error validating phone number:', error);
             isValid = false;
@@ -106,22 +99,4 @@ document.addEventListener('DOMContentLoaded', function () {
         );
         resultsDiv.appendChild(pTag);
     };
-
-    function validateUSPhoneNumber(phoneNumber) {
-        const usPhoneRegex = /^(1\s?)?(\([0-9]{3}\)|[0-9]{3})[\s\-]?[0-9]{3}[\s\-]?[0-9]{4}$/;
-        return usPhoneRegex.test(phoneNumber);
-    }
-
-    function formatUSPhoneNumber(phoneNumber) {
-        const usPhoneRegex = /^(1\s?)?(\([0-9]{3}\)|[0-9]{3})[\s\-]?([0-9]{3})[\s\-]?([0-9]{4})$/;
-        const match = phoneNumber.match(usPhoneRegex);
-        if (match) {
-            const countryCode = match[1] ? match[1].trim() + ' ' : '';
-            const areaCode = match[2];
-            const firstPart = match[3];
-            const secondPart = match[4];
-            return `${countryCode}${areaCode} ${firstPart}-${secondPart}`;
-        }
-        return phoneNumber;
-    }
 });
