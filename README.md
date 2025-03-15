@@ -1,6 +1,4 @@
 # Telephone-Number-Validator
-Here's a README file template for your Telephone Number Validator project:
-
 ## Features
 
 The Telephone Number Validator is a web application that validates and formats phone numbers based on selected countries. It provides the following features:
